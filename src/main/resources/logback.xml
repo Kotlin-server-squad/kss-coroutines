@@ -1,0 +1,23 @@
+<configuration>
+
+    <!-- Define a color for each component -->
+    <property name="THREAD_COLOR" value="${LOG_COLOR_THREAD:-default}"/>
+    <property name="LOGGER_COLOR" value="${LOG_COLOR_LOGGER:-blue}"/>
+    <property name="TRACEID_COLOR" value="${LOG_COLOR_TRACEID:-green}"/>
+    <property name="CORRELATION_COLOR" value="${LOG_COLOR_CORRELATION:-cyan}"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+<!--                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%-10mdc{traceId}] [%-10mdc{correlationId}] [%20.20thread] %50.50logger{50}: %message%n%ex{full}-->
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %50.50logger{50}: %message%n%ex{full}
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
